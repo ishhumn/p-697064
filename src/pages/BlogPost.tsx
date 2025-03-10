@@ -1,3 +1,4 @@
+
 import { useParams } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
@@ -838,14 +839,15 @@ const getBlogPost = (slug: string) => {
       - Academic honors or scholarships
 
       **Example:**
-      ```
+      
+      \`\`\`
       EDUCATION
       University of Washington, Seattle, WA
       Bachelor of Science in Computer Science, Expected May 2025
       GPA: 3.7/4.0
       Relevant Coursework: Data Structures & Algorithms, Database Systems, Web Development,
       Object-Oriented Programming, Operating Systems, Computer Networks, Machine Learning
-      ```
+      \`\`\`
 
       ### 3. Technical Skills Section
 
@@ -869,14 +871,15 @@ const getBlogPost = (slug: string) => {
       - Link to GitHub repository or live demo
 
       **Example Format:**
-      ```
+      
+      \`\`\`
       PROJECTS
       Weather Forecast Application | github.com/yourusername/weather-app
       • Developed a responsive web application that provides real-time weather forecasts using React, Node.js, and the OpenWeather API
       • Implemented geolocation features to automatically detect user location
       • Designed and built a caching system that reduced API calls by 40%
       • Deployed application using AWS Amplify with CI/CD pipeline
-      ```
+      \`\`\`
 
       ### 5. Work Experience
 
