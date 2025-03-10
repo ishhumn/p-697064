@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 
 interface BlogCardProps {
@@ -13,7 +14,7 @@ interface BlogCardProps {
 const BlogCard = ({ title, excerpt, image, author, date, categories, slug }: BlogCardProps) => {
   return (
     <Link to={`/blog/${slug}`} className="group">
-      <article className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
+      <article className="bg-gray-900 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-800">
         <div className="aspect-w-16 aspect-h-9 overflow-hidden">
           <img
             src={image}
@@ -26,20 +27,20 @@ const BlogCard = ({ title, excerpt, image, author, date, categories, slug }: Blo
             {categories.map((category) => (
               <span
                 key={category}
-                className="text-xs font-medium px-2 py-1 bg-blue-50 text-primary rounded-full"
+                className="text-xs font-medium px-2 py-1 bg-blue-900/30 text-blue-400 rounded-full"
               >
                 {category}
               </span>
             ))}
           </div>
-          <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors line-clamp-2">
+          <h3 className="text-xl font-semibold mb-2 group-hover:text-blue-400 transition-colors line-clamp-2 text-white">
             {title}
           </h3>
-          <p className="text-gray-600 mb-4 line-clamp-2 text-sm">{excerpt}</p>
+          <p className="text-gray-400 mb-4 line-clamp-2 text-sm">{excerpt}</p>
           <div className="flex items-center text-sm text-gray-500">
-            <span>{author}</span>
-            <span className="mx-2">•</span>
-            <span>{date}</span>
+            <span className="text-gray-400">{author}</span>
+            <span className="mx-2 text-gray-600">•</span>
+            <span className="text-gray-400">{date}</span>
           </div>
         </div>
       </article>

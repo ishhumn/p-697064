@@ -1,8 +1,11 @@
+
 import { useParams } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Card } from "@/components/ui/card";
+import { Clock, Calendar, UserCircle, Share2 } from "lucide-react";
+import RatingSystem from "@/components/RatingSystem";
 
 // Separate the data fetching logic
 const getBlogPost = (slug: string) => {
@@ -79,9 +82,9 @@ const getBlogPost = (slug: string) => {
 
 // Author card component
 const AuthorCard = ({ author, date }: { author: string; date: string }) => (
-  <Card className="p-6 lg:sticky lg:top-8">
+  <Card className="p-6 lg:sticky lg:top-8 bg-gray-900 border-gray-800 text-white">
     <div className="flex flex-col items-center text-center">
-      <div className="w-20 h-20 rounded-full bg-gray-200 mb-4 overflow-hidden">
+      <div className="w-20 h-20 rounded-full bg-gray-800 mb-4 overflow-hidden">
         <img
           src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${author}`}
           alt={author}
@@ -89,11 +92,14 @@ const AuthorCard = ({ author, date }: { author: string; date: string }) => (
         />
       </div>
       <h3 className="font-semibold text-lg mb-2">{author}</h3>
-      <p className="text-sm text-gray-500 mb-4">Senior Content Writer</p>
-      <div className="w-full h-px bg-gray-200 my-4" />
-      <div className="text-sm text-gray-500">
-        <p>Published on</p>
-        <p className="font-medium text-gray-900">{date}</p>
+      <p className="text-sm text-gray-400 mb-4">Student Contributor</p>
+      <div className="w-full h-px bg-gray-800 my-4" />
+      <div className="text-sm text-gray-400">
+        <div className="flex items-center justify-center mb-2">
+          <Calendar className="w-4 h-4 mr-2" />
+          <p>Published on</p>
+        </div>
+        <p className="font-medium text-gray-300">{date}</p>
       </div>
       <Button className="w-full mt-4" variant="outline">
         Follow Author
@@ -108,11 +114,11 @@ const BlogPost = () => {
 
   if (!post) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gray-950">
         <Navbar />
         <div className="container mx-auto px-4 py-16">
           <div className="text-center">
-            <h1 className="text-3xl font-bold mb-4">Post not found</h1>
+            <h1 className="text-3xl font-bold mb-4 text-white">Post not found</h1>
             <Link to="/">
               <Button>Return Home</Button>
             </Link>
@@ -123,14 +129,17 @@ const BlogPost = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-950 text-gray-200">
       <Navbar />
       
       <article className="container mx-auto px-4 py-16">
         <div className="max-w-6xl mx-auto">
           <div className="mb-8">
-            <Link to="/" className="text-primary hover:underline mb-8 inline-block">
-              ← Back to all posts
+            <Link to="/" className="text-blue-400 hover:underline mb-8 inline-block flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2">
+                <path d="M19 12H5M12 19l-7-7 7-7" />
+              </svg>
+              Back to all posts
             </Link>
           </div>
 
@@ -142,14 +151,25 @@ const BlogPost = () => {
                 {post.categories.map((category) => (
                   <span
                     key={category}
-                    className="text-xs font-medium px-2 py-1 bg-blue-50 text-primary rounded-full"
+                    className="text-xs font-medium px-2 py-1 bg-blue-900/30 text-blue-400 rounded-full"
                   >
                     {category}
                   </span>
                 ))}
               </div>
 
-              <h1 className="text-4xl font-bold mb-8">{post.title}</h1>
+              <h1 className="text-4xl font-bold mb-8 text-white">{post.title}</h1>
+
+              <div className="flex items-center mb-6 text-sm text-gray-400">
+                <div className="flex items-center mr-4">
+                  <UserCircle className="w-4 h-4 mr-1" />
+                  <span>{post.author}</span>
+                </div>
+                <div className="flex items-center">
+                  <Clock className="w-4 h-4 mr-1" />
+                  <span>5 min read</span>
+                </div>
+              </div>
 
               <div className="aspect-w-16 aspect-h-9 mb-8 rounded-xl overflow-hidden">
                 <img
@@ -159,12 +179,80 @@ const BlogPost = () => {
                 />
               </div>
 
-              <div className="prose prose-lg lg:prose-xl max-w-none">
+              <div className="prose prose-lg lg:prose-xl max-w-none prose-invert">
                 {post.content.split('\n\n').map((paragraph, index) => (
-                  <p key={index} className="text-gray-700 leading-relaxed mb-6">
+                  <p key={index} className="text-gray-300 leading-relaxed mb-6">
                     {paragraph}
                   </p>
                 ))}
+                
+                {/* Add more generated content for length */}
+                <h2 className="text-2xl font-bold mt-10 mb-6 text-white">Exploring the Technical Details</h2>
+                <p className="text-gray-300 leading-relaxed mb-6">
+                  As student developers, it's crucial to understand not just the theoretical aspects but also the practical implementations. The code examples below demonstrate how conceptual knowledge translates into real-world applications.
+                </p>
+                <pre className="bg-gray-800 p-4 rounded-lg overflow-x-auto mb-6">
+                  <code className="text-sm text-gray-300">
+{`// Example implementation
+function implementAlgorithm(data) {
+  const results = [];
+  // Process the data
+  for (let i = 0; i < data.length; i++) {
+    results.push(processItem(data[i]));
+  }
+  return results;
+}
+
+// Helper function
+function processItem(item) {
+  return {
+    ...item,
+    processed: true,
+    timestamp: Date.now()
+  };
+}`}
+                  </code>
+                </pre>
+                <p className="text-gray-300 leading-relaxed mb-6">
+                  The efficiency of algorithms and data structures is a fundamental concept in computer science. As students develop their skills, understanding time and space complexity becomes increasingly important for building scalable applications.
+                </p>
+                <h2 className="text-2xl font-bold mt-10 mb-6 text-white">Future Implications</h2>
+                <p className="text-gray-300 leading-relaxed mb-6">
+                  Looking forward, the concepts discussed in this article have significant implications for emerging technologies. Students positioning themselves at the forefront of these developments will have opportunities to contribute to groundbreaking advancements in the field.
+                </p>
+                <p className="text-gray-300 leading-relaxed mb-6">
+                  Collaboration across disciplines is becoming increasingly important as technology touches every aspect of our lives. Computer science students should seek opportunities to work with peers from other fields, bringing their technical expertise to diverse challenges.
+                </p>
+              </div>
+              
+              {/* Rating system */}
+              <RatingSystem postId={slug || ""} />
+              
+              {/* Share buttons */}
+              <div className="flex items-center justify-center mt-10 mb-10 border-t border-gray-800 pt-6">
+                <span className="text-gray-400 mr-4">Share this article:</span>
+                <div className="flex space-x-4">
+                  <Button variant="outline" size="icon" className="rounded-full">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                    </svg>
+                  </Button>
+                  <Button variant="outline" size="icon" className="rounded-full">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
+                    </svg>
+                  </Button>
+                  <Button variant="outline" size="icon" className="rounded-full">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                      <rect x="2" y="9" width="4" height="12" />
+                      <circle cx="4" cy="4" r="2" />
+                    </svg>
+                  </Button>
+                  <Button variant="outline" size="icon" className="rounded-full">
+                    <Share2 className="h-4 w-4" />
+                  </Button>
+                </div>
               </div>
             </div>
 

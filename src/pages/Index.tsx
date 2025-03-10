@@ -1,7 +1,9 @@
+
 import Navbar from "@/components/Navbar";
 import BlogCard from "@/components/BlogCard";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import { Code, Cpu, BookText, BookOpen } from "lucide-react";
 
 const FEATURED_POST = {
   title: "The Future of Design Systems in 2024",
@@ -63,21 +65,65 @@ const BLOG_POSTS = [
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-950">
       <Navbar />
       
-      <div className="relative bg-primary overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-blue-800 opacity-90"></div>
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1519681393784-d120267933ba')] bg-cover bg-center mix-blend-overlay"></div>
+      <div className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 to-blue-900 opacity-90"></div>
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1550439062-609e1531270e')] bg-cover bg-center opacity-20"></div>
         <div className="relative container mx-auto px-4 py-32">
           <div className="max-w-4xl mx-auto text-center">
+            <div className="inline-block px-4 py-2 rounded-full bg-blue-500/20 text-blue-300 mb-6 backdrop-blur-sm">
+              <span className="text-sm font-medium">Tech insights by students, for students</span>
+            </div>
             <h1 className="text-5xl md:text-7xl font-bold mb-6 text-white leading-tight">
-              Insights for Creative Minds
+              Where Student Developers Share Their Journey
             </h1>
-            <p className="text-xl md:text-2xl mb-12 text-white/90 leading-relaxed">
-              Join our community of designers, developers, and creative professionals. 
-              Get weekly insights on design, technology, and business.
+            <p className="text-xl md:text-2xl mb-12 text-blue-100 leading-relaxed">
+              Join our community of student programmers, developers, and tech enthusiasts.
+              Learn, contribute, and grow together.
             </p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <Button size="lg" className="bg-gradient-to-r from-blue-600 to-indigo-600">
+                Start Reading
+              </Button>
+              <Button size="lg" variant="outline" className="border-blue-400 text-blue-300">
+                Contribute
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="container mx-auto px-4 -mt-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
+          <div className="bg-gray-900 p-6 rounded-xl shadow-lg border border-gray-800">
+            <div className="bg-blue-900/30 p-3 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">
+              <Code className="text-blue-400" />
+            </div>
+            <h3 className="font-semibold text-lg mb-2 text-white">Programming</h3>
+            <p className="text-gray-400 text-sm">Coding tutorials, algorithms, and programming languages.</p>
+          </div>
+          <div className="bg-gray-900 p-6 rounded-xl shadow-lg border border-gray-800">
+            <div className="bg-blue-900/30 p-3 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">
+              <Cpu className="text-blue-400" />
+            </div>
+            <h3 className="font-semibold text-lg mb-2 text-white">Tech</h3>
+            <p className="text-gray-400 text-sm">Latest in technology, hardware, and industry trends.</p>
+          </div>
+          <div className="bg-gray-900 p-6 rounded-xl shadow-lg border border-gray-800">
+            <div className="bg-blue-900/30 p-3 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">
+              <BookOpen className="text-blue-400" />
+            </div>
+            <h3 className="font-semibold text-lg mb-2 text-white">Courses</h3>
+            <p className="text-gray-400 text-sm">Reviews and guides for computer science courses.</p>
+          </div>
+          <div className="bg-gray-900 p-6 rounded-xl shadow-lg border border-gray-800">
+            <div className="bg-blue-900/30 p-3 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">
+              <BookText className="text-blue-400" />
+            </div>
+            <h3 className="font-semibold text-lg mb-2 text-white">Resources</h3>
+            <p className="text-gray-400 text-sm">Learning materials, tools, and student resources.</p>
           </div>
         </div>
       </div>
@@ -85,8 +131,8 @@ const Index = () => {
       <main className="container mx-auto px-4 py-24">
         {/* Featured Post */}
         <div className="mb-24">
-          <h2 className="text-3xl font-bold mb-12 text-left">Featured Story</h2>
-          <div className="bg-white rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300">
+          <h2 className="text-3xl font-bold mb-12 text-left text-white">Featured Story</h2>
+          <div className="bg-gray-900 rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300 border border-gray-800">
             <div className="grid md:grid-cols-2 gap-0">
               <div className="aspect-w-16 aspect-h-9 md:aspect-h-full">
                 <img
@@ -100,18 +146,18 @@ const Index = () => {
                   {FEATURED_POST.categories.map((category) => (
                     <span
                       key={category}
-                      className="text-xs font-medium px-3 py-1 bg-blue-50 text-primary rounded-full"
+                      className="text-xs font-medium px-3 py-1 bg-blue-900/30 text-blue-400 rounded-full"
                     >
                       {category}
                     </span>
                   ))}
                 </div>
-                <h3 className="text-3xl font-bold mb-6">{FEATURED_POST.title}</h3>
-                <p className="text-gray-600 mb-8 text-lg leading-relaxed">{FEATURED_POST.excerpt}</p>
+                <h3 className="text-3xl font-bold mb-6 text-white">{FEATURED_POST.title}</h3>
+                <p className="text-gray-400 mb-8 text-lg leading-relaxed">{FEATURED_POST.excerpt}</p>
                 <div className="flex items-center text-sm text-gray-500 mb-8">
-                  <span className="font-medium">{FEATURED_POST.author}</span>
-                  <span className="mx-2">•</span>
-                  <span>{FEATURED_POST.date}</span>
+                  <span className="font-medium text-gray-400">{FEATURED_POST.author}</span>
+                  <span className="mx-2 text-gray-600">•</span>
+                  <span className="text-gray-400">{FEATURED_POST.date}</span>
                 </div>
                 <Button size="lg" className="self-start">Read More</Button>
               </div>
@@ -122,8 +168,10 @@ const Index = () => {
         {/* Latest Posts */}
         <div>
           <div className="flex justify-between items-center mb-12">
-            <h2 className="text-3xl font-bold">Latest Stories</h2>
-            <Button variant="outline" size="lg">View All</Button>
+            <h2 className="text-3xl font-bold text-white">Latest Stories</h2>
+            <Button variant="outline" size="lg" className="border-gray-700 text-gray-300">
+              View All
+            </Button>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {BLOG_POSTS.map((post) => (
